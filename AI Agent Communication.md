@@ -2,9 +2,9 @@
 
 > **How multiple AI agents coordinate, delegate, exchange context, share state, pass artifacts, react to events, and work as a team.**
 
-[![Status](https://img.shields.io/badge/Status-Study%20Guide-blue)]()
-[![Patterns](https://img.shields.io/badge/Patterns-30-green)]()
-[![Level](https://img.shields.io/badge/Level-Beginner%20to%20Advanced-orange)]()
+[![Status](https://img.shields.io/badge/Status-Study%20Guide-blue)](<>)
+[![Patterns](https://img.shields.io/badge/Patterns-30-green)](<>)
+[![Level](https://img.shields.io/badge/Level-Beginner%20to%20Advanced-orange)](<>)
 
 > 🔗 **Related Guide:** Want to learn about the different types of AI agents and how they think? Read the [AI Agent Types Guide](./ai_agent_types_cybersecurity.md).
 
@@ -43,6 +43,7 @@
 ## 1. Core Mental Model
 
 An **AI agent** is an LLM-based system that can:
+
 - Follow instructions
 - Use tools
 - Maintain state
@@ -75,12 +76,12 @@ graph TD
 
 A useful way to think about an agent system is in **four layers**:
 
-| Layer | Question It Answers | Examples |
-|---|---|---|
-| **Pattern** | How do agents cooperate? | Handoff, delegation, pipeline, consensus |
-| **Data / State** | What information do they share? | Context, memory, state, files |
-| **Messaging** | How are messages/events coordinated? | Queue, Pub/Sub, broadcast, streaming |
-| **Transport / Infrastructure** | How does data physically move? | HTTP, gRPC, WebSocket, TCP, Redis, Kafka |
+| Layer                          | Question It Answers                  | Examples                                 |
+| ------------------------------ | ------------------------------------ | ---------------------------------------- |
+| **Pattern**                    | How do agents cooperate?             | Handoff, delegation, pipeline, consensus |
+| **Data / State**               | What information do they share?      | Context, memory, state, files            |
+| **Messaging**                  | How are messages/events coordinated? | Queue, Pub/Sub, broadcast, streaming     |
+| **Transport / Infrastructure** | How does data physically move?       | HTTP, gRPC, WebSocket, TCP, Redis, Kafka |
 
 > **Study rule:** Do not confuse a **communication pattern** with a **message format**, **transport**, or **infrastructure**. They solve different problems.
 
@@ -157,7 +158,7 @@ graph TD
 
 ## 4. Complex Scenario — E-Commerce Build
 
-**User Request:** *"Build a secure e-commerce application."*
+**User Request:** _"Build a secure e-commerce application."_
 
 ```mermaid
 graph TD
@@ -180,15 +181,15 @@ graph TD
 
 ### Typical Agent Responsibilities
 
-| Agent | Responsibility |
-|---|---|
-| **Manager** | Owns the overall workflow and combines results |
-| **Architect** | Designs services, APIs, database and system boundaries |
-| **Backend** | Implements APIs, authentication and business logic |
-| **Frontend** | Builds UI and connects to backend APIs |
-| **Security** | Checks authentication, authorization, injection, secrets and threat risks |
-| **Tester** | Runs tests and reports failures |
-| **Reviewer** | Reviews quality and suggests corrections |
+| Agent         | Responsibility                                                            |
+| ------------- | ------------------------------------------------------------------------- |
+| **Manager**   | Owns the overall workflow and combines results                            |
+| **Architect** | Designs services, APIs, database and system boundaries                    |
+| **Backend**   | Implements APIs, authentication and business logic                        |
+| **Frontend**  | Builds UI and connects to backend APIs                                    |
+| **Security**  | Checks authentication, authorization, injection, secrets and threat risks |
+| **Tester**    | Runs tests and reports failures                                           |
+| **Reviewer**  | Reviews quality and suggests corrections                                  |
 
 ---
 
@@ -220,7 +221,7 @@ graph TD
 
 ### Pattern 1: Handoff
 
-> **In simple words:** Agent A says *"I'm done, now YOU take over"* and gives full control to Agent B.
+> **In simple words:** Agent A says _"I'm done, now YOU take over"_ and gives full control to Agent B.
 
 **Layer:** Manager / Triage  
 **When to use:** When a specialist should **completely take over** the conversation.
@@ -246,7 +247,7 @@ sequenceDiagram
 
 ### Pattern 2: Agent-as-Tool
 
-> **In simple words:** Manager calls a specialist like a function — *"Do this small job and give me the answer"* — but the Manager **stays in charge**.
+> **In simple words:** Manager calls a specialist like a function — _"Do this small job and give me the answer"_ — but the Manager **stays in charge**.
 
 **Layer:** Task Coordination  
 **When to use:** When the manager needs a specialist's opinion but wants to keep making decisions.
@@ -263,7 +264,7 @@ sequenceDiagram
     Manager->>Manager: Continues with other tasks
 ```
 
-**Scenario:** Manager asks Security Agent: *"Check whether this API has authentication vulnerabilities."* Security Agent returns its findings, and Manager keeps working on other things.
+**Scenario:** Manager asks Security Agent: _"Check whether this API has authentication vulnerabilities."_ Security Agent returns its findings, and Manager keeps working on other things.
 
 > 💡 **Handoff vs Agent-as-Tool:** In handoff, Agent B takes over. In agent-as-tool, Manager **keeps control** and just gets a result back.
 
@@ -279,7 +280,7 @@ sequenceDiagram
 ```mermaid
 graph LR
     A["📐 Architect Agent"] -->|"Context: PostgreSQL, JWT Auth, REST API"| B["⚙️ Backend Agent"]
-    
+
     style A fill:#4a90d9,color:white
     style B fill:#27ae60,color:white
 ```
@@ -326,9 +327,10 @@ graph TD
     style Tester fill:#27ae60,color:white
 ```
 
-**Scenario:** Manager receives *"Build the checkout system"* and delegates:
+**Scenario:** Manager receives _"Build the checkout system"_ and delegates:
+
 - **Payment API** → Backend Agent
-- **Checkout UI** → Frontend Agent  
+- **Checkout UI** → Frontend Agent
 - **Payment security checks** → Security Agent
 - **Write test cases** → Testing Agent
 
@@ -391,12 +393,13 @@ graph TD
     style Memory fill:#8e44ad,color:white
 ```
 
-**Scenario:** Security Agent stores: *"ShopApp uses JWT + refresh tokens with 15-minute expiry."*
+**Scenario:** Security Agent stores: _"ShopApp uses JWT + refresh tokens with 15-minute expiry."_
 
 Six months later, a new agent working on the same project can retrieve this information **without asking Security Agent again**.
 
 > 💡 **Shared State vs Shared Memory:**
-> - **Shared State** = current status (changes frequently)  
+>
+> - **Shared State** = current status (changes frequently)
 > - **Shared Memory** = long-term knowledge (persists over time)
 
 ---
@@ -442,6 +445,7 @@ sequenceDiagram
 ```
 
 **Scenario:** A user registers on the e-commerce site. The `USER_REGISTERED` event automatically triggers:
+
 - Email Agent sends a welcome email
 - Welcome Agent creates a 10% discount coupon
 
@@ -469,8 +473,9 @@ graph TD
 ```
 
 **Scenario:** Backend Agent publishes `PAYMENT_FAILED`. It has **no idea** who is listening. But three agents subscribed to this event:
+
 - Security Agent checks for fraud
-- Analytics Agent updates failure stats  
+- Analytics Agent updates failure stats
 - Notification Agent alerts the user
 
 > 💡 **Event-Driven vs Pub/Sub:** Event-driven is the general idea. Pub/Sub is a **specific way** to implement it using a message bus with subscriptions.
@@ -547,7 +552,7 @@ sequenceDiagram
     Logger-->>Manager: "Analysis complete!" (later)
 ```
 
-**Scenario:** Manager says *"Analyze 10,000 log files."* Instead of waiting (which could take hours), Manager **immediately continues** with other tasks. Log Agent sends results whenever it finishes.
+**Scenario:** Manager says _"Analyze 10,000 log files."_ Instead of waiting (which could take hours), Manager **immediately continues** with other tasks. Log Agent sends results whenever it finishes.
 
 > 💡 **Sync vs Async:** Sync = "I'll wait here." Async = "Send me the answer when you're done, I'm busy."
 
@@ -571,7 +576,7 @@ sequenceDiagram
     Note over Payment: Now approves the payment
 ```
 
-**Scenario:** Payment Agent asks Fraud Agent: *"Is this transaction suspicious?"* It **must wait** — it can't approve a potentially fraudulent payment just because it's in a hurry.
+**Scenario:** Payment Agent asks Fraud Agent: _"Is this transaction suspicious?"_ It **must wait** — it can't approve a potentially fraudulent payment just because it's in a hurry.
 
 > 💡 **Key Point:** Use synchronous when the answer is **critical** and you **cannot continue** without it.
 
@@ -604,7 +609,7 @@ sequenceDiagram
 
 ### Pattern 15: Event / Signal Notification
 
-> **In simple words:** A short, lightweight alert — just saying *"something happened"* — without sending detailed data.
+> **In simple words:** A short, lightweight alert — just saying _"something happened"_ — without sending detailed data.
 
 **Layer:** Messaging  
 **When to use:** When you need to **quickly alert** another agent about an important event.
@@ -622,7 +627,7 @@ sequenceDiagram
 
 **Scenario:** Security Agent detects a SQL injection attempt. It immediately sends a `SECURITY_ALERT` signal. The signal is lightweight — just a heads-up. Manager then asks for details if needed.
 
-> 💡 **Signal vs Full Message:** A signal is like a fire alarm — it says *"DANGER!"* but not *"Fire on floor 3, room 204, caused by electrical fault."*
+> 💡 **Signal vs Full Message:** A signal is like a fire alarm — it says _"DANGER!"_ but not _"Fire on floor 3, room 204, caused by electrical fault."_
 
 ---
 
@@ -686,6 +691,7 @@ graph TD
 ```
 
 **Workspace structure:**
+
 ```text
 /workspace
  ├── frontend/      ← Frontend Agent writes here
@@ -732,6 +738,7 @@ sequenceDiagram
 **When to use:** When agents need **reliable, machine-readable** communication.
 
 **Structured message (good ✅):**
+
 ```json
 {
   "from": "security-agent",
@@ -744,15 +751,16 @@ sequenceDiagram
 ```
 
 **Unstructured message (bad ❌):**
+
 ```text
-"Hey, I think there might be some security problem 
+"Hey, I think there might be some security problem
 with the payment thing... maybe check it?"
 ```
 
 ```mermaid
 graph LR
     Security["🔒 Security Agent"] -->|"JSON Message"| Manager["🧠 Manager"]
-    
+
     style Security fill:#e74c3c,color:white
     style Manager fill:#3498db,color:white
 ```
@@ -781,6 +789,7 @@ sequenceDiagram
 ```
 
 **Scenario:** Research Agent sends data to Analysis Agent. Instead of just sending data and hoping, they follow a protocol:
+
 1. **REQUEST** — "Here is the data"
 2. **ACK** — "I received it, I'm working on it"
 3. **PROGRESS** — "I'm 50% done"
@@ -841,8 +850,9 @@ graph LR
 ```
 
 **Scenario:**
+
 - **Server 1** (US East): Research Agent searches databases
-- **Server 2** (US West): Coding Agent writes code  
+- **Server 2** (US West): Coding Agent writes code
 - **Server 3** (Europe): Testing Agent runs tests
 
 They communicate through network protocols (HTTP, gRPC, WebSocket, etc.).
@@ -875,9 +885,10 @@ graph TD
     style Supervisor fill:#e74c3c,color:white
 ```
 
-**Scenario:** Supervisor receives *"Analyze 1 million log entries."* It splits the work:
+**Scenario:** Supervisor receives _"Analyze 1 million log entries."_ It splits the work:
+
 - Worker 1 → Logs 1 to 100,000
-- Worker 2 → Logs 100,001 to 200,000  
+- Worker 2 → Logs 100,001 to 200,000
 - Worker 3 → Logs 200,001 to 300,000
 
 Supervisor **monitors progress** and **combines results** when all workers finish.
@@ -941,6 +952,7 @@ graph TD
 ```
 
 **Scenario:**
+
 - **CEO Agent** gives the overall goal
 - **Engineering Manager** breaks it into coding + testing tasks
 - **Security Manager** handles all security-related work
@@ -977,7 +989,7 @@ graph TD
     style Manager fill:#e74c3c,color:white
 ```
 
-**Scenario:** Manager announces: *"PROJECT DEADLINE MOVED TO FRIDAY."* Every single agent receives this message.
+**Scenario:** Manager announces: _"PROJECT DEADLINE MOVED TO FRIDAY."_ Every single agent receives this message.
 
 > 💡 **Key Point:** Broadcast = **one to ALL**. Like an intercom announcement in an office.
 
@@ -1007,7 +1019,7 @@ graph TD
     style Manager fill:#e74c3c,color:white
 ```
 
-**Scenario:** Manager announces: *"Database schema has changed."* Only Backend, Database, and Security agents receive this. Frontend doesn't need to know — the APIs haven't changed.
+**Scenario:** Manager announces: _"Database schema has changed."_ Only Backend, Database, and Security agents receive this. Frontend doesn't need to know — the APIs haven't changed.
 
 > 💡 **Broadcast vs Multicast:** Broadcast = message to **everyone**. Multicast = message to a **selected group**.
 
@@ -1035,8 +1047,9 @@ graph LR
 ```
 
 **Scenario:**
+
 1. **Research Agent** gathers data about product trends
-2. **Analysis Agent** finds patterns in the data  
+2. **Analysis Agent** finds patterns in the data
 3. **Writer Agent** drafts a report from the analysis
 4. **Editor Agent** polishes the writing
 5. **Final Output** → delivered to user
@@ -1071,6 +1084,7 @@ sequenceDiagram
 ```
 
 **Scenario:** Coder produces code. Tester runs tests:
+
 - **Round 1:** FAIL — authentication test broken → Coder fixes
 - **Round 2:** FAIL — edge case missing → Coder adds it
 - **Round 3:** PASS → sent to Manager
@@ -1091,7 +1105,7 @@ graph TD
     A["📐 Architect A: PostgreSQL"]
     B["📐 Architect B: PostgreSQL"]
     C["📐 Architect C: MongoDB"]
-    
+
     A --> Discussion["🤝 Compare Trade-offs"]
     B --> Discussion
     C --> Discussion
@@ -1102,8 +1116,9 @@ graph TD
 ```
 
 **Scenario:** Three architect agents discuss which database to use:
+
 - Agent A argues for PostgreSQL (ACID compliance)
-- Agent B agrees with PostgreSQL (better for transactions)  
+- Agent B agrees with PostgreSQL (better for transactions)
 - Agent C argues for MongoDB (flexible schema)
 
 After discussion, **2 out of 3 agree** → Consensus = PostgreSQL.
@@ -1143,7 +1158,7 @@ graph TD
 > **⚠️ Critical Understanding:** Things like **JSON, HTTP, Redis, Kafka** are NOT the same kind of "agent communication pattern" as **handoff, negotiation, delegation, or consensus**. They operate at **completely different layers**.
 >
 > - **Handoff, Delegation, Consensus** = How agents **cooperate** (pattern)
-> - **JSON** = How the message **looks** (format)  
+> - **JSON** = How the message **looks** (format)
 > - **HTTP, gRPC** = How the message **travels** (transport)
 > - **Redis, Kafka** = The **system** that delivers messages (infrastructure)
 
@@ -1153,65 +1168,65 @@ graph TD
 
 The following grouping is useful for exams, architecture discussions, and system design. A real system may combine several layers at once.
 
-| Layer | Patterns |
-|---|---|
-| **Team Organization** | Supervisor–Worker • Peer-to-Peer • Hierarchical |
-| **Task Coordination** | Handoff • Task Delegation • Pipeline • Feedback / Result • Parallel work |
-| **Agent Interaction** | Request–Response / RPC • Synchronous Messaging • Negotiation / Consensus • Protocol-Based Communication |
-| **Data / State** | Context Passing • Shared State • Shared Memory • Artifact / File Passing • Blackboard • Shared Workspace |
-| **Messaging** | Event-Driven • Pub/Sub • Message Queue • Async Messaging • Streaming • Broadcast • Multicast • Event / Signal |
-| **Tool / API / Transport** | Function / Tool Call • Inter-Agent API • Distributed Communication • Structured JSON |
+| Layer                      | Patterns                                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Team Organization**      | Supervisor–Worker • Peer-to-Peer • Hierarchical                                                               |
+| **Task Coordination**      | Handoff • Task Delegation • Pipeline • Feedback / Result • Parallel work                                      |
+| **Agent Interaction**      | Request–Response / RPC • Synchronous Messaging • Negotiation / Consensus • Protocol-Based Communication       |
+| **Data / State**           | Context Passing • Shared State • Shared Memory • Artifact / File Passing • Blackboard • Shared Workspace      |
+| **Messaging**              | Event-Driven • Pub/Sub • Message Queue • Async Messaging • Streaming • Broadcast • Multicast • Event / Signal |
+| **Tool / API / Transport** | Function / Tool Call • Inter-Agent API • Distributed Communication • Structured JSON                          |
 
 ---
 
 ## 7. Pattern vs Message vs Transport vs Infrastructure
 
-| Concept | What It Means | Examples |
-|---|---|---|
-| **Communication Pattern** | The cooperation logic | Handoff, delegation, pipeline, consensus |
-| **Message Format** | The shape of the information | JSON, XML, Protobuf, typed objects |
-| **Transport** | How bytes/messages move between processes | HTTP, gRPC, WebSocket, TCP |
-| **Messaging Infrastructure** | The system that stores/routes/delivers messages | Redis, Kafka, RabbitMQ, NATS |
-| **State / Workspace** | Where shared information or artifacts live | DB, object storage, filesystem, blackboard |
+| Concept                      | What It Means                                   | Examples                                   |
+| ---------------------------- | ----------------------------------------------- | ------------------------------------------ |
+| **Communication Pattern**    | The cooperation logic                           | Handoff, delegation, pipeline, consensus   |
+| **Message Format**           | The shape of the information                    | JSON, XML, Protobuf, typed objects         |
+| **Transport**                | How bytes/messages move between processes       | HTTP, gRPC, WebSocket, TCP                 |
+| **Messaging Infrastructure** | The system that stores/routes/delivers messages | Redis, Kafka, RabbitMQ, NATS               |
+| **State / Workspace**        | Where shared information or artifacts live      | DB, object storage, filesystem, blackboard |
 
-> **Example:** *"Pipeline + JSON + HTTP + RabbitMQ + PostgreSQL"* describes one system using several different layers at the same time.
+> **Example:** _"Pipeline + JSON + HTTP + RabbitMQ + PostgreSQL"_ describes one system using several different layers at the same time.
 
 ---
 
 ## 8. Quick Revision Table
 
-| Pattern | Meaning | Typical Flow |
-|---|---|---|
-| Handoff | Transfer control | A → B |
-| Agent-as-Tool | Call specialist, keep control | Manager → Specialist → Manager |
-| Context Passing | Send relevant context | A → context → B |
-| Task Delegation | Split work | Manager → tasks |
-| Shared State | Common current state | A/B/C ↔ state |
-| Shared Memory | Persistent shared knowledge | Agents ↔ memory |
-| Artifact Passing | Share files/results | A → file → B |
-| Event-Driven | Event triggers work | Event → Agent |
-| Pub/Sub | Publish + subscribers | Publisher → Bus → Subscribers |
-| Queue | Buffer tasks | Producer → Queue → Workers |
-| RPC | Direct request/response | A ↔ B |
-| Async | No immediate wait | A → B → later result |
-| Sync | Wait for result | A → B → result |
-| Streaming | Incremental output | A → chunks → B |
-| Signal | Lightweight notification | Alert → receiver |
-| Blackboard | Shared knowledge board | Agents ↔ Board |
-| Workspace | Shared project environment | Agents ↔ Files |
-| Tool Call | Invoke capability | Agent → Tool |
-| JSON Message | Structured message | JSON |
-| Protocol | Defined interaction contract | REQ → ACK → RESULT |
-| Inter-Agent API | Agent endpoint | A → API → B |
-| Distributed | Separate processes/services | Node ↔ Node |
-| Supervisor–Worker | Central manager + workers | S → W1/W2/W3 |
-| P2P | Equal direct agents | A ↔ B ↔ C |
-| Hierarchical | Multiple control levels | Top → Mid → Worker |
-| Broadcast | Send to everyone | One → All |
-| Multicast | Send to selected group | One → Group |
-| Pipeline | Sequential stages | A → B → C |
-| Feedback | Iterative correction | Coder ↔ Tester |
-| Consensus | Reach agreement | Proposals → Agreement |
+| Pattern           | Meaning                       | Typical Flow                   |
+| ----------------- | ----------------------------- | ------------------------------ |
+| Handoff           | Transfer control              | A → B                          |
+| Agent-as-Tool     | Call specialist, keep control | Manager → Specialist → Manager |
+| Context Passing   | Send relevant context         | A → context → B                |
+| Task Delegation   | Split work                    | Manager → tasks                |
+| Shared State      | Common current state          | A/B/C ↔ state                  |
+| Shared Memory     | Persistent shared knowledge   | Agents ↔ memory                |
+| Artifact Passing  | Share files/results           | A → file → B                   |
+| Event-Driven      | Event triggers work           | Event → Agent                  |
+| Pub/Sub           | Publish + subscribers         | Publisher → Bus → Subscribers  |
+| Queue             | Buffer tasks                  | Producer → Queue → Workers     |
+| RPC               | Direct request/response       | A ↔ B                          |
+| Async             | No immediate wait             | A → B → later result           |
+| Sync              | Wait for result               | A → B → result                 |
+| Streaming         | Incremental output            | A → chunks → B                 |
+| Signal            | Lightweight notification      | Alert → receiver               |
+| Blackboard        | Shared knowledge board        | Agents ↔ Board                 |
+| Workspace         | Shared project environment    | Agents ↔ Files                 |
+| Tool Call         | Invoke capability             | Agent → Tool                   |
+| JSON Message      | Structured message            | JSON                           |
+| Protocol          | Defined interaction contract  | REQ → ACK → RESULT             |
+| Inter-Agent API   | Agent endpoint                | A → API → B                    |
+| Distributed       | Separate processes/services   | Node ↔ Node                    |
+| Supervisor–Worker | Central manager + workers     | S → W1/W2/W3                   |
+| P2P               | Equal direct agents           | A ↔ B ↔ C                      |
+| Hierarchical      | Multiple control levels       | Top → Mid → Worker             |
+| Broadcast         | Send to everyone              | One → All                      |
+| Multicast         | Send to selected group        | One → Group                    |
+| Pipeline          | Sequential stages             | A → B → C                      |
+| Feedback          | Iterative correction          | Coder ↔ Tester                 |
+| Consensus         | Reach agreement               | Proposals → Agreement          |
 
 ---
 
@@ -1219,20 +1234,20 @@ The following grouping is useful for exams, architecture discussions, and system
 
 For practical multi-agent systems, the following concepts appear frequently across modern designs:
 
-| Concept | When to Use |
-|---|---|
-| **Handoff** | When a specialist should take over the active conversation/workflow |
-| **Agent-as-Tool** | When a manager should remain in control and use specialists for bounded subtasks |
-| **Context Passing** | Give the next agent only the relevant requirements, state and metadata |
-| **Task Delegation** | Split a large objective into independently executable subtasks |
-| **Shared State** | Keep current project status accessible to the agents that need it |
-| **Artifact Passing** | Use files/specifications/reports as durable handoff objects |
-| **Event-Driven + Pub/Sub** | When multiple agents should react to the same event without direct coupling |
-| **Queue + Async** | For large or slow workloads where workers should process tasks independently |
-| **Supervisor–Worker** | For controlled distribution and monitoring of parallel work |
-| **Pipeline** | When each stage depends on the previous stage's output |
-| **Feedback Loop** | For code/test/review cycles and iterative correction |
-| **Consensus** | When multiple agents must compare proposals before a shared decision |
+| Concept                    | When to Use                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| **Handoff**                | When a specialist should take over the active conversation/workflow              |
+| **Agent-as-Tool**          | When a manager should remain in control and use specialists for bounded subtasks |
+| **Context Passing**        | Give the next agent only the relevant requirements, state and metadata           |
+| **Task Delegation**        | Split a large objective into independently executable subtasks                   |
+| **Shared State**           | Keep current project status accessible to the agents that need it                |
+| **Artifact Passing**       | Use files/specifications/reports as durable handoff objects                      |
+| **Event-Driven + Pub/Sub** | When multiple agents should react to the same event without direct coupling      |
+| **Queue + Async**          | For large or slow workloads where workers should process tasks independently     |
+| **Supervisor–Worker**      | For controlled distribution and monitoring of parallel work                      |
+| **Pipeline**               | When each stage depends on the previous stage's output                           |
+| **Feedback Loop**          | For code/test/review cycles and iterative correction                             |
+| **Consensus**              | When multiple agents must compare proposals before a shared decision             |
 
 ---
 
@@ -1306,50 +1321,56 @@ graph TD
 ## 12. Exam & Interview Definitions
 
 ### Q: What is multi-agent communication?
+
 It is the exchange of tasks, context, state, events, results or control between multiple AI agents so they can cooperate toward a larger goal.
 
 ### Q: Handoff vs Agent-as-Tool?
+
 In a **handoff**, the specialist becomes the active agent. In **agent-as-tool**, the original manager remains in control and calls the specialist for a bounded subtask.
 
 ### Q: Is JSON a communication pattern?
+
 **No.** JSON is a message/data format. The communication pattern could be RPC, Pub/Sub, handoff, event-driven communication, etc.
 
 ### Q: Is HTTP a communication pattern?
+
 **No.** HTTP is a transport/application protocol. It can carry many different interaction patterns.
 
 ### Q: Can agents communicate without the Internet?
+
 **Yes.** Agents can cooperate inside one process, on localhost, through local files, shared state, local sockets, or a local message broker.
 
 ### Q: Why use multiple agents?
+
 Common reasons: specialization, task decomposition, parallel work, isolation of responsibilities, review/verification loops, and controlled orchestration.
 
 ---
 
 ## 13. One-Page Cheat Sheet
 
-| If You Want... | Think Of... |
-|---|---|
-| A specialist takes over | **Handoff** |
-| Manager keeps control | **Agent-as-Tool** |
-| Split a big job | **Task Delegation** |
-| Share current status | **Shared State** |
-| Remember across runs | **Memory** |
-| Pass a specification/report | **Artifact / File Passing** |
-| React to something that happened | **Event-Driven / Signal** |
-| One event, many listeners | **Pub/Sub** |
-| Buffer many jobs | **Queue** |
-| Direct request and answer | **RPC / Request–Response** |
-| Don't wait | **Async Messaging** |
-| Wait for answer | **Sync Messaging** |
-| Receive partial results | **Streaming** |
-| Many agents work in stages | **Pipeline** |
-| Coder ↔ Tester iteration | **Feedback Loop** |
-| Central controller + workers | **Supervisor–Worker** |
-| Equal agents communicate directly | **P2P** |
-| Multiple management levels | **Hierarchical** |
-| Agents compare proposals | **Negotiation / Consensus** |
-| Machine-readable message | **JSON / structured schema** |
-| Move messages between services | **HTTP / gRPC / WebSocket / TCP** |
+| If You Want...                    | Think Of...                       |
+| --------------------------------- | --------------------------------- |
+| A specialist takes over           | **Handoff**                       |
+| Manager keeps control             | **Agent-as-Tool**                 |
+| Split a big job                   | **Task Delegation**               |
+| Share current status              | **Shared State**                  |
+| Remember across runs              | **Memory**                        |
+| Pass a specification/report       | **Artifact / File Passing**       |
+| React to something that happened  | **Event-Driven / Signal**         |
+| One event, many listeners         | **Pub/Sub**                       |
+| Buffer many jobs                  | **Queue**                         |
+| Direct request and answer         | **RPC / Request–Response**        |
+| Don't wait                        | **Async Messaging**               |
+| Wait for answer                   | **Sync Messaging**                |
+| Receive partial results           | **Streaming**                     |
+| Many agents work in stages        | **Pipeline**                      |
+| Coder ↔ Tester iteration          | **Feedback Loop**                 |
+| Central controller + workers      | **Supervisor–Worker**             |
+| Equal agents communicate directly | **P2P**                           |
+| Multiple management levels        | **Hierarchical**                  |
+| Agents compare proposals          | **Negotiation / Consensus**       |
+| Machine-readable message          | **JSON / structured schema**      |
+| Move messages between services    | **HTTP / gRPC / WebSocket / TCP** |
 
 ### Core Formula
 
@@ -1397,6 +1418,7 @@ graph TD
 ```
 
 **Examples:**
+
 - Customer support chatbot on a website
 - Discord moderation bot
 - Telegram auto-reply bot
@@ -1408,14 +1430,14 @@ graph TD
 
 A **communication assistant** is an AI-powered tool designed to help humans **communicate more effectively**. It sits between the user and their audience, enhancing messages rather than replacing the human.
 
-| Feature | Description |
-|---|---|
-| **Email drafting** | Composes professional emails from brief prompts |
-| **Grammar & tone correction** | Fixes language and adjusts tone (formal, casual, empathetic) |
-| **Summarization** | Condenses long conversations, meeting transcripts, or documents |
-| **Translation** | Real-time or batch translation across languages |
-| **Smart replies** | Suggests contextual quick responses |
-| **Meeting assistance** | Takes notes, tracks action items, generates recaps |
+| Feature                       | Description                                                     |
+| ----------------------------- | --------------------------------------------------------------- |
+| **Email drafting**            | Composes professional emails from brief prompts                 |
+| **Grammar & tone correction** | Fixes language and adjusts tone (formal, casual, empathetic)    |
+| **Summarization**             | Condenses long conversations, meeting transcripts, or documents |
+| **Translation**               | Real-time or batch translation across languages                 |
+| **Smart replies**             | Suggests contextual quick responses                             |
+| **Meeting assistance**        | Takes notes, tracks action items, generates recaps              |
 
 ```mermaid
 graph TD
@@ -1443,6 +1465,7 @@ graph TD
 ### 14.3 What is an AI Agent?
 
 An **AI agent** is an autonomous or semi-autonomous system that can:
+
 - **Perceive** its environment (read context, data, events)
 - **Reason** about what to do next (LLM-based planning)
 - **Act** using tools (APIs, code execution, file manipulation)
@@ -1470,17 +1493,17 @@ graph TD
 
 ### 14.4 Bot vs Assistant vs Agent — Comparison
 
-| Feature | Bot | Communication Assistant | AI Agent |
-|---|---|---|---|
-| **Intelligence** | Rule-based / scripted | LLM-powered, context-aware | LLM-powered, autonomous reasoning |
-| **Purpose** | Automate single task | Help humans communicate | Accomplish complex goals autonomously |
-| **Autonomy** | Low — follows rules | Medium — suggests, human decides | High — plans, decides, acts |
-| **Tool Use** | None or limited | Text processing only | Multiple tools (APIs, code, files) |
-| **Memory** | Minimal | Session-level | Short-term + long-term memory |
-| **Multi-step Planning** | ❌ No | ❌ No | ✅ Yes |
-| **Collaboration** | ❌ Solo | ❌ Solo (assists human) | ✅ Can work with other agents |
-| **State Management** | Stateless / simple | Session state | Rich persistent state |
-| **Error Recovery** | Fails or loops | Asks human | Retries, adapts, escalates |
+| Feature                 | Bot                   | Communication Assistant          | AI Agent                              |
+| ----------------------- | --------------------- | -------------------------------- | ------------------------------------- |
+| **Intelligence**        | Rule-based / scripted | LLM-powered, context-aware       | LLM-powered, autonomous reasoning     |
+| **Purpose**             | Automate single task  | Help humans communicate          | Accomplish complex goals autonomously |
+| **Autonomy**            | Low — follows rules   | Medium — suggests, human decides | High — plans, decides, acts           |
+| **Tool Use**            | None or limited       | Text processing only             | Multiple tools (APIs, code, files)    |
+| **Memory**              | Minimal               | Session-level                    | Short-term + long-term memory         |
+| **Multi-step Planning** | ❌ No                 | ❌ No                            | ✅ Yes                                |
+| **Collaboration**       | ❌ Solo               | ❌ Solo (assists human)          | ✅ Can work with other agents         |
+| **State Management**    | Stateless / simple    | Session state                    | Rich persistent state                 |
+| **Error Recovery**      | Fails or loops        | Asks human                       | Retries, adapts, escalates            |
 
 ---
 
@@ -1571,14 +1594,14 @@ graph TD
 
 #### Key Components
 
-| Component | Technology | Purpose |
-|---|---|---|
-| Triage Agent | Python + LLM API | Classify intent, extract entities |
-| Specialist Agents | Python + LLM API + Tools | Domain-specific responses |
-| Quality Agent | Python + LLM API | Review and score responses |
-| Shared State | Redis / JSON file | Track ticket status, history |
-| Message Queue | Redis Queue / RabbitMQ | Buffer incoming tickets |
-| Frontend | HTML + JS (or Streamlit) | Customer chat interface |
+| Component         | Technology               | Purpose                           |
+| ----------------- | ------------------------ | --------------------------------- |
+| Triage Agent      | Python + LLM API         | Classify intent, extract entities |
+| Specialist Agents | Python + LLM API + Tools | Domain-specific responses         |
+| Quality Agent     | Python + LLM API         | Review and score responses        |
+| Shared State      | Redis / JSON file        | Track ticket status, history      |
+| Message Queue     | Redis Queue / RabbitMQ   | Buffer incoming tickets           |
+| Frontend          | HTML + JS (or Streamlit) | Customer chat interface           |
 
 #### Implementation Steps
 
@@ -1654,15 +1677,15 @@ graph TD
 
 #### Key Components
 
-| Component | Technology | Purpose |
-|---|---|---|
-| Planner Agent | Python + LLM API | Generate structured outline |
-| Research Agents | Python + LLM + Web Search API | Gather information per section |
-| Writer Agent | Python + LLM API | Draft content from research notes |
-| Editor Agent | Python + LLM API | Review, correct, improve |
-| Fact-Checker Agent | Python + LLM + Search API | Verify claims and data |
-| Shared Workspace | Local filesystem / Cloud storage | Store artifacts between stages |
-| Orchestrator | Python | Manage pipeline flow |
+| Component          | Technology                       | Purpose                           |
+| ------------------ | -------------------------------- | --------------------------------- |
+| Planner Agent      | Python + LLM API                 | Generate structured outline       |
+| Research Agents    | Python + LLM + Web Search API    | Gather information per section    |
+| Writer Agent       | Python + LLM API                 | Draft content from research notes |
+| Editor Agent       | Python + LLM API                 | Review, correct, improve          |
+| Fact-Checker Agent | Python + LLM + Search API        | Verify claims and data            |
+| Shared Workspace   | Local filesystem / Cloud storage | Store artifacts between stages    |
+| Orchestrator       | Python                           | Manage pipeline flow              |
 
 #### Implementation Steps
 
@@ -1706,11 +1729,11 @@ collaborative-writer/
 
 As multi-agent systems grow, standardized protocols are emerging to allow agents built on different frameworks to talk to each other.
 
-| Protocol | Developer | Purpose | Key Features |
-|---|---|---|---|
-| **MCP (Model Context Protocol)** | Anthropic | Standardizes how AI models access data and context | Connects LLMs securely to local/remote data sources (files, databases, APIs) without custom integrations. |
-| **A2A (Agent-to-Agent)** | Google | Standardizes how independent agents communicate | Defines message shapes, handoff semantics, and delegation tracking between agents. |
-| **ACP (Agent Communication Protocol)** | Various | Interoperability between multi-agent frameworks | Aimed at standardizing payloads, intents, and capabilities discovery. |
+| Protocol                               | Developer | Purpose                                            | Key Features                                                                                              |
+| -------------------------------------- | --------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **MCP (Model Context Protocol)**       | Anthropic | Standardizes how AI models access data and context | Connects LLMs securely to local/remote data sources (files, databases, APIs) without custom integrations. |
+| **A2A (Agent-to-Agent)**               | Google    | Standardizes how independent agents communicate    | Defines message shapes, handoff semantics, and delegation tracking between agents.                        |
+| **ACP (Agent Communication Protocol)** | Various   | Interoperability between multi-agent frameworks    | Aimed at standardizing payloads, intents, and capabilities discovery.                                     |
 
 > **Why it matters:** Without standard protocols, every multi-agent system is a silo. Standard protocols allow a Microsoft AutoGen agent to seamlessly delegate a task to a LangGraph agent.
 
@@ -1720,13 +1743,13 @@ As multi-agent systems grow, standardized protocols are emerging to allow agents
 
 A quick guide to popular frameworks used to build multi-agent systems:
 
-| Framework | Best For | Architecture | Key Characteristics |
-|---|---|---|---|
-| **LangGraph** (LangChain) | State-machine workflows | Directed Cyclic Graphs (State) | Highly controllable, great for cyclic loops (e.g., code-test-fix), strongly typed state. |
-| **Microsoft AutoGen** | Conversational agents | P2P & Hierarchical chat | Easy to set up conversable agents that chat with each other to solve problems. Strong code execution. |
-| **CrewAI** | Role-based teams | Sequential & Hierarchical | Very intuitive. Defines agents by "role", "goal", and "backstory". Uses LangChain tools. |
-| **Semantic Kernel** (Microsoft) | Enterprise C# / Python apps | Plugin-based orchestration | Deep integration with Microsoft ecosystem. Treats AI as a copilot plugin engine. |
-| **OpenAI Agents SDK** | OpenAI native ecosystems | Orchestration, Tooling | Native primitives for Handoff, Agent-as-Tool, and managed Sandboxes. |
+| Framework                       | Best For                    | Architecture                   | Key Characteristics                                                                                   |
+| ------------------------------- | --------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| **LangGraph** (LangChain)       | State-machine workflows     | Directed Cyclic Graphs (State) | Highly controllable, great for cyclic loops (e.g., code-test-fix), strongly typed state.              |
+| **Microsoft AutoGen**           | Conversational agents       | P2P & Hierarchical chat        | Easy to set up conversable agents that chat with each other to solve problems. Strong code execution. |
+| **CrewAI**                      | Role-based teams            | Sequential & Hierarchical      | Very intuitive. Defines agents by "role", "goal", and "backstory". Uses LangChain tools.              |
+| **Semantic Kernel** (Microsoft) | Enterprise C# / Python apps | Plugin-based orchestration     | Deep integration with Microsoft ecosystem. Treats AI as a copilot plugin engine.                      |
+| **OpenAI Agents SDK**           | OpenAI native ecosystems    | Orchestration, Tooling         | Native primitives for Handoff, Agent-as-Tool, and managed Sandboxes.                                  |
 
 ---
 
@@ -1747,12 +1770,12 @@ graph TD
     end
 ```
 
-| Type | How it Works | Multi-Agent Use Case |
-|---|---|---|
-| **Short-Term (Context Window)** | The immediate chat history fed into the LLM prompt. | Passing context during a **Handoff** so the next agent knows what just happened. |
-| **Scratchpad** | Internal reasoning steps (Chain of Thought) not shown to the user. | Storing temporary tool outputs before summarizing them for the Manager. |
-| **Episodic (Long-Term)** | Vector DBs storing past conversations and actions. | A new agent searches past project decisions (Shared Memory) instead of re-asking. |
-| **Semantic / Knowledge Graph** | Structured relationships between entities. | An Architect Agent builds a graph of the system; the Security Agent queries the graph for weak points. |
+| Type                            | How it Works                                                       | Multi-Agent Use Case                                                                                   |
+| ------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **Short-Term (Context Window)** | The immediate chat history fed into the LLM prompt.                | Passing context during a **Handoff** so the next agent knows what just happened.                       |
+| **Scratchpad**                  | Internal reasoning steps (Chain of Thought) not shown to the user. | Storing temporary tool outputs before summarizing them for the Manager.                                |
+| **Episodic (Long-Term)**        | Vector DBs storing past conversations and actions.                 | A new agent searches past project decisions (Shared Memory) instead of re-asking.                      |
+| **Semantic / Knowledge Graph**  | Structured relationships between entities.                         | An Architect Agent builds a graph of the system; the Security Agent queries the graph for weak points. |
 
 ---
 
@@ -1792,7 +1815,7 @@ sequenceDiagram
     Note over Agent: Reasons about the error
     Agent->>Tool: Retries with fixed params
     Tool-->>Agent: ✅ Success
-    
+
     Note over Agent, Orch: After many failed turns...
     Orch-->>Agent: 🛑 Circuit Breaker Triggered (Halt)
 ```
@@ -1808,16 +1831,16 @@ sequenceDiagram
 
 Where are multi-agent architectures actually being used in production?
 
-1. **DevOps & Incident Response:** 
-   - *Triage Agent* reads PagerDuty alert.
-   - *Log Investigator Agent* queries Datadog.
-   - *Mitigation Agent* suggests a rollback script.
+1. **DevOps & Incident Response:**
+   - _Triage Agent_ reads PagerDuty alert.
+   - _Log Investigator Agent_ queries Datadog.
+   - _Mitigation Agent_ suggests a rollback script.
 2. **Automated Content Factories:**
-   - *SEO Agent* finds keywords -> *Writer Agent* drafts -> *Compliance Agent* checks brand guidelines -> *Publishing Agent* pushes to CMS.
+   - _SEO Agent_ finds keywords -> _Writer Agent_ drafts -> _Compliance Agent_ checks brand guidelines -> _Publishing Agent_ pushes to CMS.
 3. **Complex Financial Research:**
-   - *Data Gathering Agents* pull SEC filings concurrently.
-   - *Quantitative Agent* analyzes the numbers.
-   - *Synthesizer Agent* writes the executive summary.
+   - _Data Gathering Agents_ pull SEC filings concurrently.
+   - _Quantitative Agent_ analyzes the numbers.
+   - _Synthesizer Agent_ writes the executive summary.
 
 ---
 
@@ -1833,14 +1856,14 @@ graph LR
         A -->|"I need you to do the task."| B
         B -->|"Okay, tell me the task."| A
     end
-    
+
     style A fill:#e74c3c,color:white
     style B fill:#e74c3c,color:white
 ```
 
 - ❌ **Over-Agenting:** Using 5 agents for a task that one LLM call with good tools could solve. (Adds latency, cost, and failure points).
 - ❌ **Infinite Loops:** Two conversational agents get stuck politely agreeing with each other endlessly without producing output.
-- ❌ **Context Bloat:** Passing the *entire* conversation history to every specialist agent, overflowing the context window. (Use **Context Passing** to send only what they need).
+- ❌ **Context Bloat:** Passing the _entire_ conversation history to every specialist agent, overflowing the context window. (Use **Context Passing** to send only what they need).
 - ❌ **Brittle Parsing:** Relying on agents to perfectly format free-text for the next agent. (Use **Structured JSON** or tool-calling instead).
 
 ---
@@ -1854,12 +1877,12 @@ graph TD
     Test["🧪 Test Case"] --> System["🤖 Multi-Agent System"]
     System --> Output["📄 Final Output"]
     System --> Trajectory["🛤️ Execution Trajectory"]
-    
+
     Output --> Evaluator["⚖️ Evaluator Agent (GPT-4)"]
     Trajectory --> Evaluator
-    
+
     Evaluator --> Score["📊 Score: 95/100 (Pass)"]
-    
+
     style Evaluator fill:#3498db,color:white
     style Score fill:#27ae60,color:white
 ```
@@ -1867,7 +1890,7 @@ graph TD
 1. **Mocking Tools:** When testing agent logic, mock external APIs so tests run fast and deterministically.
 2. **Assertion on Structure, not Exact Text:** Don't assert `output == "Hello World"`. Assert `output.contains_greeting == true` or validate the JSON schema.
 3. **Evaluator Agents:** Use a strong LLM (like GPT-4) as an automated judge to score the output of your agent pipeline on metrics like accuracy, tone, and conciseness.
-4. **Trajectory Testing:** Don't just test the final output. Test the *path* the agents took. (e.g., "Did the Manager Agent correctly invoke the Web Search Agent before answering?").
+4. **Trajectory Testing:** Don't just test the final output. Test the _path_ the agents took. (e.g., "Did the Manager Agent correctly invoke the Web Search Agent before answering?").
 
 ---
 
@@ -1884,22 +1907,22 @@ What's next for multi-agent systems?
 
 ## 25. References
 
-| Resource | Link |
-|---|---|
-| OpenAI Agents SDK — Python | https://openai.github.io/openai-agents-python/ |
-| Agent Orchestration | https://openai.github.io/openai-agents-python/multi_agent/ |
-| Handoffs | https://openai.github.io/openai-agents-python/handoffs/ |
-| Tools / Agents as Tools | https://openai.github.io/openai-agents-python/tools/ |
-| Sandbox Concepts | https://openai.github.io/openai-agents-python/sandbox/guide/ |
-| Sandbox Quickstart | https://openai.github.io/openai-agents-python/sandbox_agents/ |
-| OpenAI Agents SDK — TypeScript | https://openai.github.io/openai-agents-js/ |
-| Google A2A Protocol | https://github.com/google/A2A |
-| Anthropic MCP | https://modelcontextprotocol.io/ |
-| Microsoft AutoGen | https://microsoft.github.io/autogen/ |
-| CrewAI | https://www.crewai.com/ |
-| LangGraph | https://langchain-ai.github.io/langgraph/ |
-| Google ADK (Agent Development Kit) | https://google.github.io/adk-docs/ |
-| Semantic Kernel | https://learn.microsoft.com/en-us/semantic-kernel/ |
+| Resource                           | Link                                                          |
+| ---------------------------------- | ------------------------------------------------------------- |
+| OpenAI Agents SDK — Python         | https://openai.github.io/openai-agents-python/                |
+| Agent Orchestration                | https://openai.github.io/openai-agents-python/multi_agent/    |
+| Handoffs                           | https://openai.github.io/openai-agents-python/handoffs/       |
+| Tools / Agents as Tools            | https://openai.github.io/openai-agents-python/tools/          |
+| Sandbox Concepts                   | https://openai.github.io/openai-agents-python/sandbox/guide/  |
+| Sandbox Quickstart                 | https://openai.github.io/openai-agents-python/sandbox_agents/ |
+| OpenAI Agents SDK — TypeScript     | https://openai.github.io/openai-agents-js/                    |
+| Google A2A Protocol                | https://github.com/google/A2A                                 |
+| Anthropic MCP                      | https://modelcontextprotocol.io/                              |
+| Microsoft AutoGen                  | https://microsoft.github.io/autogen/                          |
+| CrewAI                             | https://www.crewai.com/                                       |
+| LangGraph                          | https://langchain-ai.github.io/langgraph/                     |
+| Google ADK (Agent Development Kit) | https://google.github.io/adk-docs/                            |
+| Semantic Kernel                    | https://learn.microsoft.com/en-us/semantic-kernel/            |
 
 > **Note:** APIs, sandbox behavior, and SDK details can change. For implementation work, check the current official documentation rather than relying only on these study notes.
 

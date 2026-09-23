@@ -56,7 +56,9 @@ NIST describes an agent as software that can interact with an environment, recei
 ## 2. Two Major Taxonomies
 
 ### Classical AI Agent Types
+
 These focus on **decision-making behavior**:
+
 1. Simple Reflex Agent
 2. Model-Based Reflex Agent
 3. Goal-Based Agent
@@ -64,7 +66,9 @@ These focus on **decision-making behavior**:
 5. Learning Agent
 
 ### Modern Agent Architectures
+
 These focus more on **how the system operates**:
+
 1. Reactive
 2. Deliberative / Planning
 3. Tool-Using
@@ -90,6 +94,7 @@ These aren't necessarily mutually exclusive species. They are often **design pat
 ## 3. Simple Reflex Agent
 
 ### Definition
+
 A **Simple Reflex Agent** makes a decision based mainly on the **current percept/input**.
 
 The basic rule is: `IF condition THEN action`
@@ -101,6 +106,7 @@ graph TD
 ```
 
 ### Cybersecurity Example
+
 Suppose a firewall sees `Source IP = 192.168.x.x` and the IP exists in a blocklist.
 
 ```mermaid
@@ -111,6 +117,7 @@ graph TD
 ```
 
 ### Behavior & Pros/Cons
+
 - **Behavior:** `EVENT → RULE → ACTION`. No sophisticated planning.
 - **Advantages:** Very fast, simple, predictable, easy to implement and audit.
 - **Limitations:** Lack of context.
@@ -138,9 +145,11 @@ graph TD
 ```
 
 ### Why Internal State Matters
+
 A simple reflex agent might see `PowerShell` and alert. A model-based agent sees the sequence: `User Login → Document → PowerShell → Executable → External Connection` and knows the context.
 
 ### Cybersecurity Use Cases
+
 - User behavior monitoring
 - Login anomaly detection
 - Attack-chain detection
@@ -163,13 +172,16 @@ graph TD
 ```
 
 ### Cybersecurity Example — Phishing Investigation
+
 - **Goal:** Determine whether an email belongs to a phishing campaign.
 - **Plan:** Parse email → Extract URLs/domains/IPs → Analyze headers → Check threat intel → Correlate IOCs → Generate report.
 
 ### Planning vs Reflex
+
 A simple reflex agent triggers on a suspicious URL. A goal-based agent plans an investigation with multiple steps to collect evidence. If the threat intel API is down, it can re-plan to use internal DNS logs.
 
 ### Cybersecurity Use Cases
+
 - Incident investigation
 - Threat hunting
 - Digital forensics workflows
@@ -184,6 +196,7 @@ A utility-based agent asks: **"Which available action gives the most desirable o
 This is important when multiple objectives or trade-offs exist.
 
 ### Cybersecurity Example
+
 Suspicious traffic is detected. Possible actions: Block, Monitor, Rate-limit.
 Each action balances **Security**, **Availability**, and **Cost**.
 
@@ -193,7 +206,7 @@ graph TD
     Traffic --> Block[BLOCK]
     Traffic --> Mon[MONITOR]
     Traffic --> Limit[RATE-LIMIT]
-    
+
     Block -->|Security ↑ | Cost1[Cost & Disruption ↑]
     Mon -->|Availability ↑ | Risk1[Risk ↑]
     Limit -->|Balanced| Cost2[Cost & Risk Balanced]
@@ -218,6 +231,7 @@ graph TD
 ```
 
 ### Cybersecurity Example
+
 An agent processes 10,000 login events with analyst feedback (Normal vs Attack). It learns patterns related to password spraying, impossible travel, etc., to make better future predictions and reduce false positives.
 
 > 🧠 **Memory trick:** Learning Agent = EXPERIENCE → LEARN → IMPROVE
@@ -235,18 +249,22 @@ The classical types explain **decision-making**. Modern architectures explain **
 Here is a deep dive into how modern agents actually get work done, explained in simple English.
 
 ### 8.1 Reactive Agent
-Responds to events immediately without deep thinking. `EVENT → ACTION`. 
+
+Responds to events immediately without deep thinking. `EVENT → ACTION`.
 
 **Example:** Malware is detected on a laptop. The agent immediately cuts off network access.
+
 ```mermaid
 graph TD
     Event[Malware Detected] --> Action[Isolate Endpoint from Network]
 ```
 
 ### 8.2 Deliberative / Planning Agent
+
 Takes time to think and create a step-by-step plan before doing anything. `Goal → Plan → Execute`.
 
 **Example:** Investigating a compromised server. The agent writes down a 5-step checklist before starting.
+
 ```mermaid
 graph TD
     Goal[Investigate Server] --> Plan
@@ -259,9 +277,11 @@ graph TD
 ```
 
 ### 8.3 Tool-Using Agent
+
 Can reach out to external software to get facts, rather than just guessing.
 
 **Example:** An agent gets an IP address, then uses three different cybersecurity tools to check its reputation.
+
 ```mermaid
 graph TD
     Agent[AI Agent] -->|Calls API| VirusTotal[VirusTotal]
@@ -271,13 +291,16 @@ graph TD
 ```
 
 ### 8.4 ReAct Agent (Reason + Act)
+
 Thinks out loud, takes an action, looks at the result, and then thinks again. `Reason → Act → Observe → Reason`.
 
-**Example:** 
-1. *Reason:* I need to know who owns this domain.
-2. *Act:* Runs WHOIS tool.
-3. *Observe:* It's registered in Russia.
-4. *Reason:* That's suspicious. Now I should check if they sent any emails...
+**Example:**
+
+1. _Reason:_ I need to know who owns this domain.
+2. _Act:_ Runs WHOIS tool.
+3. _Observe:_ It's registered in Russia.
+4. _Reason:_ That's suspicious. Now I should check if they sent any emails...
+
 ```mermaid
 graph LR
     Reason1[Reason] --> Act[Tool Action]
@@ -286,9 +309,11 @@ graph LR
 ```
 
 ### 8.5 Autonomous Agent
+
 Given a high-level goal, it works completely on its own for a long time, fixing its own mistakes until the job is done.
 
 **Example:** "Write a report on the latest ransomware." It searches the web, reads articles, writes a draft, checks its own grammar, and saves the file.
+
 ```mermaid
 graph TD
     Goal[High-Level Goal] --> Loop
@@ -300,9 +325,11 @@ graph TD
 ```
 
 ### 8.6 Hierarchical Agent
+
 A boss agent gives orders to worker agents.
 
 **Example:** A "Security Chief" agent tells the "Network Agent" to check firewalls and the "Email Agent" to check phishing logs.
+
 ```mermaid
 graph TD
     Boss[Manager Agent] --> Worker1[Network Agent]
@@ -310,6 +337,7 @@ graph TD
 ```
 
 ### 8.7 Sequential vs Parallel Agents
+
 - **Sequential:** Like an assembly line. Agent A finishes, hands it to Agent B, who hands it to Agent C.
 - **Parallel:** Like a team working at the same time. Agent A, B, and C all work at once, then combine their work.
 
@@ -318,7 +346,7 @@ graph LR
     subgraph Sequential
         A1[Parser] --> A2[Analyzer] --> A3[Reporter]
     end
-    
+
     subgraph Parallel
         B1[Check IP] --> B4[Combine]
         B2[Check Hash] --> B4
@@ -327,9 +355,11 @@ graph LR
 ```
 
 ### 8.8 Collaborative / Multi-Agent Systems
+
 Specialized agents talk to each other to solve a puzzle together.
 
 **Example:** The Endpoint Agent says "I saw a weird file", and the Network Agent replies "I saw that file talking to a bad server!"
+
 ```mermaid
 graph TD
     Endpoint[Endpoint Agent] <--> Network[Network Agent]
@@ -338,6 +368,7 @@ graph TD
 ```
 
 ### 8.9 Human-in-the-Loop vs Human-on-the-Loop
+
 - **In-the-Loop:** The agent asks for permission before doing something dangerous.
 - **On-the-Loop:** The agent does everything automatically, but a human watches a dashboard and can press a "stop" button.
 
@@ -347,7 +378,7 @@ graph TD
         Agent1[Agent] -->|Please Approve| Human1[Human]
         Human1 -->|Yes| Action1[Block User]
     end
-    
+
     subgraph "On-the-Loop"
         Agent2[Agent] --> Action2[Block User]
         Action2 -->|Notifies| Human2[Human Monitors]
@@ -355,9 +386,11 @@ graph TD
 ```
 
 ### 8.10 Debate / Competitive Agents
+
 Two agents argue with each other to find the truth. A third agent acts as the judge.
 
 **Example:** Agent A says "This email is a phishing attack." Agent B says "No, it's just a marketing newsletter." The Judge reviews their arguments and decides.
+
 ```mermaid
 graph TD
     A[Agent A: It's an attack!] --> Judge[Judge Agent]
@@ -401,31 +434,34 @@ Here are two complete project ideas you can build to practice these concepts, us
 **Concept:** Build a team of agents that work together (Collaborative & Hierarchical) to analyze suspicious emails and decide if they are dangerous.
 
 #### 🏗️ Architecture Diagram
+
 ```mermaid
 graph TD
     Email[Incoming Suspicious Email] --> Manager[🧠 Triage Manager Agent]
-    
+
     Manager -->|Extracts Links| URLAgent[🌐 URL Analyzer Agent]
     Manager -->|Extracts Files| FileAgent[📁 Attachment Analyzer Agent]
     Manager -->|Extracts Text| TextAgent[📝 Social Engineering Agent]
-    
+
     URLAgent -->|Safe/Unsafe| Reviewer[⚖️ Final Reviewer Agent]
     FileAgent -->|Safe/Unsafe| Reviewer
     TextAgent -->|Safe/Unsafe| Reviewer
-    
+
     Reviewer --> Output[📊 Phishing Report & Score]
 ```
 
 #### 💻 Tech Stack
+
 - **Framework:** LangGraph or CrewAI (for multi-agent coordination)
 - **Language:** Python
 - **LLM:** OpenAI GPT-4o or Anthropic Claude 3.5 Sonnet
-- **Tools:** 
+- **Tools:**
   - [VirusTotal API](https://developers.virustotal.com/) (for URL/File checking)
   - [URLScan.io API](https://urlscan.io/docs/api/) (for domain checking)
 - **Interface:** Streamlit or Gradio for a simple web UI.
 
 #### 📝 Step-by-Step Implementation
+
 1. **Create the Tools:** Write Python functions to call VirusTotal and URLScan APIs.
 2. **Define the Agents:** Create prompts for the URL Agent (focuses on domains), File Agent (focuses on malware signatures), and Text Agent (focuses on urgency/manipulation).
 3. **Set up the Manager:** Use a hierarchical pattern where the Manager reads the email, splits the tasks, and sends them to the specialized agents.
@@ -438,29 +474,32 @@ graph TD
 **Concept:** A ReAct / Tool-Using agent that detects suspicious logins, gathers evidence, and proposes locking the account—but waits for human approval before executing the lock.
 
 #### 🏗️ Architecture Diagram
+
 ```mermaid
 graph TD
     SIEM[SIEM Alert: Impossible Travel] --> Agent[🤖 ReAct Security Agent]
-    
+
     Agent <-->|Tool: Query Location| GeoIP[GeoIP Database]
     Agent <-->|Tool: Query Devices| MDM[Device Manager]
-    
+
     Agent -->|Proposes Action| Slack[💬 Slack / MS Teams Bot]
-    
+
     Slack -->|Approve| Exec[⚡ Lock Azure AD Account]
     Slack -->|Reject| Ignore[✅ Mark False Positive]
 ```
 
 #### 💻 Tech Stack
+
 - **Framework:** Semantic Kernel or standard LangChain
 - **Language:** TypeScript / Node.js
 - **LLM:** GPT-4o-mini (fast and cheap for tool calling)
-- **Tools:** 
+- **Tools:**
   - [MaxMind GeoIP](https://dev.maxmind.com/geoip/) (for location checking)
   - [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/api/overview) (for locking Azure AD accounts)
 - **Interface:** Slack API (for the Human-in-the-Loop button).
 
 #### 📝 Step-by-Step Implementation
+
 1. **Listen for Alerts:** Create a simple webhook that receives a fake "impossible travel" alert.
 2. **Build the ReAct Loop:** The agent receives the alert, uses the GeoIP tool to check the IP addresses, and uses a device tool to check if the user is on a known laptop.
 3. **Send to Slack:** If the agent decides it's an attack, it sends an interactive message to a Slack channel with two buttons: "Approve Lock" and "Reject".
@@ -469,6 +508,7 @@ graph TD
 ---
 
 ### References
+
 1. **IBM:** [Types of AI Agents](https://www.ibm.com/topics/ai-agent) — classical agent taxonomy and modern agent concepts.
 2. **NIST CSRC:** [Agent Glossary](https://csrc.nist.gov/glossary/term/agent) — definition of an agent.
 3. **NIST:** [Agentic AI](https://www.nist.gov/itl/ai-risk-management-framework) — current work on agentic AI, autonomy, evaluation, and risk management.
