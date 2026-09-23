@@ -163,10 +163,10 @@ graph TD
 ```mermaid
 graph TD
   User[" USER"] --> Manager[" MANAGER AGENT"]
-  Manager --> Incident Commander[" ARCHITECT"]
+  Manager --> IncidentCommander[" ARCHITECT"]
   Manager --> Security[" SECURITY"]
   Manager --> Planner[" PLANNER"]
-  Incident Commander --> Backend[" BACKEND"]
+  IncidentCommander --> Backend[" BACKEND"]
   Security --> Reviewer[" REVIEWER"]
   Planner --> TaskList[" TASK LIST"]
   Backend --> Frontend[" FRONTEND"]
@@ -201,15 +201,15 @@ graph TD
 graph TD
   User[" User: Build a secure e-commerce app"]
   Manager[" Manager Agent"]
-  Incident Commander[" Incident Commander Agent"]
-  Backend[" Forensics Agent"]
-  Frontend[" Threat Intel Agent"]
+  IncidentCommander[" IncidentCommander Agent"]
+  Backend[" ForensicsAgent"]
+  Frontend[" ThreatIntelAgent"]
   Security[" Security Agent"]
   Tester[" Testing Agent"]
   Reviewer[" Reviewer Agent"]
 
   User --> Manager
-  Manager --> Incident Commander
+  Manager --> IncidentCommander
   Manager --> Backend
   Manager --> Frontend
   Manager --> Security
@@ -279,7 +279,7 @@ sequenceDiagram
 
 ```mermaid
 graph LR
-  A[" Incident Commander Agent"] -->|"Context: PostgreSQL, JWT Auth, REST API"| B[" Forensics Agent"]
+  A[" IncidentCommander Agent"] -->|"Context: PostgreSQL, JWT Auth, REST API"| B[" ForensicsAgent"]
 
   style A fill:#4a90d9,color:white
   style B fill:#27ae60,color:white
@@ -347,10 +347,10 @@ graph TD
 
 ```mermaid
 graph TD
-  A[" Forensics Agent"] --> State[" Shared State"]
-  B[" Threat Intel Agent"] --> State
+  A[" ForensicsAgent"] --> State[" Shared State"]
+  B[" ThreatIntelAgent"] --> State
   C[" Security Agent"] --> State
-  D[" Penetration Testing Agent"] --> State
+  D[" PenetrationTestingAgent"] --> State
 
   State --> A
   State --> B
@@ -413,8 +413,8 @@ Six months later, a new agent working on the same project can retrieve this info
 
 ```mermaid
 graph TD
-  Incident Commander[" Incident Commander Agent"] -->|Creates| File[" incident-playbook.json"]
-  File -->|Reads| Backend[" Forensics Agent"]
+  IncidentCommander[" IncidentCommander Agent"] -->|Creates| File[" incident-playbook.json"]
+  File -->|Reads| Backend[" ForensicsAgent"]
 
   style File fill:#e74c3c,color:white
 ```
@@ -464,7 +464,7 @@ Nobody told these agents to work — the **event itself** woke them up.
 
 ```mermaid
 graph TD
-  Backend[" Forensics Agent"] -->|"Publishes: FIREWALL_BREACHED"| Bus[" Event Bus"]
+  Backend[" ForensicsAgent"] -->|"Publishes: FIREWALL_BREACHED"| Bus[" Event Bus"]
   Bus -->|Subscribed| Security[" Security Agent: Check fraud"]
   Bus -->|Subscribed| Analytics[" Analytics: Update stats"]
   Bus -->|Subscribed| Notify[" Notification: Alert user"]
@@ -520,8 +520,8 @@ Workers process them independently, at their own speed.
 
 ```mermaid
 sequenceDiagram
-  participant Frontend as Threat Intel Agent
-  participant Backend as Forensics Agent
+  participant Frontend as ThreatIntelAgent
+  participant Backend as ForensicsAgent
 
   Frontend->>Backend: "Give me the IoC format"
   Backend-->>Frontend: "Here is the OpenIoC format"
@@ -567,8 +567,8 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-  participant Payment as Identity Agent
-  participant Fraud as Zero Trust Agent
+  participant Payment as IdentityAgent
+  participant Fraud as ZeroTrustAgent
 
   Payment->>Fraud: "Is this $5000 transaction suspicious?"
   Note over Payment: WAITING... cannot proceed
@@ -643,7 +643,7 @@ graph TD
   Researcher[" Research Agent"] -->|Writes| Board[" BLACKBOARD"]
   Coder[" Coder Agent"] -->|Writes| Board
   Security[" Security Agent"] -->|Writes| Board
-  Tester[" Penetration Testing Agent"] -->|Reads| Board
+  Tester[" PenetrationTestingAgent"] -->|Reads| Board
 
   Board -->|Reads| Researcher
   Board -->|Reads| Coder
@@ -677,9 +677,9 @@ Agents never spoke directly. The **blackboard** was the messenger.
 ```mermaid
 graph TD
   Workspace[" /workspace"]
-  Frontend[" Threat Intel Agent: edits frontend/"]
-  Backend[" Forensics Agent: edits backend/"]
-  Tester[" Penetration Testing Agent: reads all, writes tests/"]
+  Frontend[" ThreatIntelAgent: edits frontend/"]
+  Backend[" ForensicsAgent: edits backend/"]
+  Tester[" PenetrationTestingAgent: reads all, writes tests/"]
   Docs[" Reviewer Agent: reads all, writes docs/"]
 
   Frontend --> Workspace
@@ -974,7 +974,7 @@ Each level **only talks to the level directly above or below** it.
 ```mermaid
 graph TD
   Manager[" Manager: DEADLINE MOVED TO FRIDAY"]
-  A[" Incident Commander"]
+  A[" IncidentCommander"]
   B[" Backend"]
   C[" Frontend"]
   D[" Security"]
@@ -1070,7 +1070,7 @@ Each stage **cannot start** until the previous stage finishes.
 ```mermaid
 sequenceDiagram
   participant Coder as Coder Agent
-  participant Tester as Penetration Testing Agent
+  participant Tester as PenetrationTestingAgent
   participant Manager as Manager
 
   Coder->>Tester: Submit code v1
@@ -1102,9 +1102,9 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-  A[" Incident Commander A: PostgreSQL"]
-  B[" Incident Commander B: PostgreSQL"]
-  C[" Incident Commander C: MongoDB"]
+  A[" IncidentCommander A: PostgreSQL"]
+  B[" IncidentCommander B: PostgreSQL"]
+  C[" IncidentCommander C: MongoDB"]
 
   A --> Discussion[" Compare Trade-offs"]
   B --> Discussion
@@ -1256,8 +1256,8 @@ For practical multi-agent systems, the following concepts appear frequently acro
 ```mermaid
 graph TD
   User[" USER"] -->|Build a secure e-commerce app| Manager[" MANAGER"]
-  Manager -->|HANDOFF| Incident Commander[" Incident Commander"]
-  Incident Commander -->|Creates| Spec[" incident-playbook.json"]
+  Manager -->|HANDOFF| IncidentCommander[" IncidentCommander"]
+  IncidentCommander -->|Creates| Spec[" incident-playbook.json"]
   Spec --> Backend[" Backend"]
   Backend --> API[" API implementation"]
   Manager -->|Agent-as-Tool| Security[" Security"]
