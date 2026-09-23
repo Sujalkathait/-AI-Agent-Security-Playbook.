@@ -1,23 +1,25 @@
-# 🛡️ AI Agent Security Playbook
+# AI Agent Security Playbook
 
 Welcome to the **AI Agent Security Playbook**! This repository serves as a comprehensive guide for understanding how AI agents think, communicate, and can be applied to cybersecurity.
 
-## 📚 Guides
+## Guides
 
 This playbook is currently split into two deep-dive guides:
 
-1. [**🤖 AI Agent Types — Deep Explanation for Cybersecurity**](./ai_agent_types_cybersecurity.md)
-   - Learn about Classical Agent Types (Simple Reflex, Goal-Based, etc.)
-   - Learn about Modern Agent Behaviors (ReAct, Autonomous, Multi-Agent, Human-in-the-Loop)
-   - Includes 2 complete cybersecurity project ideas.
+1. [** AI Agent Types — Deep Explanation for Cybersecurity**](./ai_agent_types_cybersecurity.md)
 
-2. [**🤖 AI Agent Communication — Complete Guide**](./AI%20Agent%20Communication.md)
-   - Learn how multi-agent systems communicate (Direct, Broadcast, Shared Memory, Pub/Sub).
-   - Learn about agent coordination patterns, conflict resolution, and fault tolerance.
+- Learn about Classical Agent Types (Simple Reflex, Goal-Based, etc.)
+- Learn about Modern Agent Behaviors (ReAct, Autonomous, Multi-Agent, Human-in-the-Loop)
+- Includes 2 complete cybersecurity project ideas.
+
+2. [** AI Agent Communication — Complete Guide**](./AI%20Agent%20Communication.md)
+
+- Learn how multi-agent systems communicate (Direct, Broadcast, Shared Memory, Pub/Sub).
+- Learn about agent coordination patterns, conflict resolution, and fault tolerance.
 
 ---
 
-## 🤝 Contributing (New AI Research, Tools, etc.)
+## Contributing (New AI Research, Tools, etc.)
 
 We welcome contributions! The field of Agentic AI is moving incredibly fast, and we are always looking for updates on:
 
