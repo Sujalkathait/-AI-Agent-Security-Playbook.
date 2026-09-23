@@ -1155,7 +1155,7 @@ graph TD
   TO --> TC --> AI --> DS --> MS --> TR
 ```
 
-> ** Critical Understanding:** Things like **JSON, HTTP, Redis, Kafka** are NOT the same kind of "agent communication pattern" as **handoff, negotiation, delegation, or consensus**. They operate at **completely different layers**.
+> **Critical Understanding:** Things like **JSON, HTTP, Redis, Kafka** are NOT the same kind of "agent communication pattern" as **handoff, negotiation, delegation, or consensus**. They operate at **completely different layers**.
 >
 > - **Handoff, Delegation, Consensus** = How agents **cooperate** (pattern)
 > - **JSON** = How the message **looks** (format)
@@ -1783,7 +1783,7 @@ graph TD
 
 When autonomous agents delegate tasks and execute code, safety is critical.
 
-### Key Trust Mechanisms:
+### Key Trust Mechanisms
 
 ```mermaid
 graph TD
@@ -1837,11 +1837,11 @@ Where are multi-agent architectures actually being used in production?
 - _Log Investigator Agent_ queries Datadog.
 - _Mitigation Agent_ suggests a rollback script.
 
-2. **Automated Content Factories:**
+1. **Automated Content Factories:**
 
 - _SEO Agent_ finds keywords -> _Writer Agent_ drafts -> _Compliance Agent_ checks brand guidelines -> _Publishing Agent_ pushes to CMS.
 
-3. **Complex Financial Research:**
+1. **Complex Financial Research:**
 
 - _Data Gathering Agents_ pull SEC filings concurrently.
 - _Quantitative Agent_ analyzes the numbers.
@@ -1914,26 +1914,24 @@ What's next for multi-agent systems?
 
 | Resource                           | Link                                                          |
 | ---------------------------------- | ------------------------------------------------------------- |
-| OpenAI Agents SDK — Python         | https://openai.github.io/openai-agents-python/                |
-| Agent Orchestration                | https://openai.github.io/openai-agents-python/multi_agent/    |
-| Handoffs                           | https://openai.github.io/openai-agents-python/handoffs/       |
-| Tools / Agents as Tools            | https://openai.github.io/openai-agents-python/tools/          |
-| Sandbox Concepts                   | https://openai.github.io/openai-agents-python/sandbox/guide/  |
-| Sandbox Quickstart                 | https://openai.github.io/openai-agents-python/sandbox_agents/ |
-| OpenAI Agents SDK — TypeScript     | https://openai.github.io/openai-agents-js/                    |
-| Google A2A Protocol                | https://github.com/google/A2A                                 |
-| Anthropic MCP                      | https://modelcontextprotocol.io/                              |
-| Microsoft AutoGen                  | https://microsoft.github.io/autogen/                          |
-| CrewAI                             | https://www.crewai.com/                                       |
-| LangGraph                          | https://langchain-ai.github.io/langgraph/                     |
-| Google ADK (Agent Development Kit) | https://google.github.io/adk-docs/                            |
-| Semantic Kernel                    | https://learn.microsoft.com/en-us/semantic-kernel/            |
+| OpenAI Agents SDK — Python         | <https://openai.github.io/openai-agents-python/>                |
+| Agent Orchestration                | <https://openai.github.io/openai-agents-python/multi_agent/>    |
+| Handoffs                           | <https://openai.github.io/openai-agents-python/handoffs/>       |
+| Tools / Agents as Tools            | <https://openai.github.io/openai-agents-python/tools/>          |
+| Sandbox Concepts                   | <https://openai.github.io/openai-agents-python/sandbox/guide/>  |
+| Sandbox Quickstart                 | <https://openai.github.io/openai-agents-python/sandbox_agents/> |
+| OpenAI Agents SDK — TypeScript     | <https://openai.github.io/openai-agents-js/>                    |
+| Google A2A Protocol                | <https://github.com/google/A2A>                                 |
+| Anthropic MCP                      | <https://modelcontextprotocol.io/>                              |
+| Microsoft AutoGen                  | <https://microsoft.github.io/autogen/>                          |
+| CrewAI                             | <https://www.crewai.com/>                                       |
+| LangGraph                          | <https://langchain-ai.github.io/langgraph/>                     |
+| Google ADK (Agent Development Kit) | <https://google.github.io/adk-docs/>                            |
+| Semantic Kernel                    | <https://learn.microsoft.com/en-us/semantic-kernel/>            |
 
 > **Note:** security controls, sandbox behavior, and SDK details can change. For implementation work, check the current official documentation rather than relying only on these study notes.
 
 ---
 
-<p align="center">
- <b> If you found this useful, give it a star</b><br>
- Made with for AI learners and builders
-</p>
+**If you found this useful, give it a star!**  
+Made for AI learners and builders

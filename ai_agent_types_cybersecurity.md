@@ -87,7 +87,7 @@ These aren't necessarily mutually exclusive species. They are often **design pat
 
 ---
 
-# PART A — CLASSICAL AI AGENTS
+## PART A — CLASSICAL AI AGENTS
 
 ---
 
@@ -238,7 +238,7 @@ An agent processes 10,000 login events with analyst feedback (Normal vs Attack).
 
 ---
 
-# PART B — MODERN AGENT BEHAVIORS
+## PART B — MODERN AGENT BEHAVIORS
 
 The classical types explain **decision-making**. Modern architectures explain **how the agent executes tasks**.
 

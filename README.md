@@ -12,7 +12,7 @@ This playbook is currently split into two deep-dive guides:
 - Learn about Modern Agent Behaviors (ReAct, Autonomous, Multi-Agent, Human-in-the-Loop)
 - Includes 2 complete cybersecurity project ideas.
 
-2. [** AI Agent Communication — Complete Guide**](./AI%20Agent%20Communication.md)
+1. [** AI Agent Communication — Complete Guide**](./AI%20Agent%20Communication.md)
 
 - Learn how multi-agent systems communicate (Direct, Broadcast, Shared Memory, Pub/Sub).
 - Learn about agent coordination patterns, conflict resolution, and fault tolerance.
